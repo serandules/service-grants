@@ -1,0 +1,39 @@
+{
+  "name": "service-grants",
+  "description": "service-grants",
+  "version": "0.0.0",
+  "author": {
+    "name": "serandives",
+    "email": "serandives@gmail.com"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "lodash": "4.17.4",
+    "mongoose": "5.1.8",
+    "express": "4.*",
+    "body-parser": "1.17.1",
+    "logger": "serandules/logger#master",
+    "errors": "serandules/errors#master",
+    "utils": "serandules/utils#master",
+    "auth": "serandules/auth#master",
+    "throttle": "serandules/throttle#master",
+    "serandi": "serandules/serandi#master",
+    "model": "serandules/model#master",
+    "validators": "serandules/validators#master",
+    "mongutils": "serandules/mongutils#master",
+    "model-clients": "serandules/model-clients#master",
+    "model-grants": "serandules/model-grants#master"
+  },
+  "devDependencies": {
+    "mocha": "3.2.0",
+    "should": "11.2.1",
+    "request": "2.81.0",
+    "pot": "serandules/pot#master"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/serandules/service-grants.git"
+  }
+}
