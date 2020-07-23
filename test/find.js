@@ -20,7 +20,7 @@ describe('GET /grants', function () {
           return done(err);
         }
         request({
-          uri: pot.resolve('accounts', '/apis/v/grants'),
+          uri: pot.resolve('apis', '/v/grants'),
           method: 'POST',
           json: {
             client: client.serandivesId,
@@ -40,7 +40,7 @@ describe('GET /grants', function () {
           b.client.should.equal(client.serandivesId);
           b.user.should.equal(client.users[0].profile.id);
           should.exist(r.headers['location']);
-          r.headers['location'].should.equal(pot.resolve('accounts', '/apis/v/grants/' + b.id));
+          r.headers['location'].should.equal(pot.resolve('apis', '/v/grants/' + b.id));
           grant = b;
           done();
         });
@@ -50,7 +50,7 @@ describe('GET /grants', function () {
 
   it('GET /grants/:id unauthorized', function (done) {
     request({
-      uri: pot.resolve('accounts', '/apis/v/grants/' + grant.id),
+      uri: pot.resolve('apis', '/v/grants/' + grant.id),
       method: 'GET',
       json: true
     }, function (e, r, b) {
@@ -68,7 +68,7 @@ describe('GET /grants', function () {
 
   it('GET /grants/:id', function (done) {
     request({
-      uri: pot.resolve('accounts', '/apis/v/grants/' + grant.id),
+      uri: pot.resolve('apis', '/v/grants/' + grant.id),
       method: 'GET',
       auth: {
         bearer: client.admin.token
@@ -90,7 +90,7 @@ describe('GET /grants', function () {
 
   it('GET /grants', function (done) {
     request({
-      uri: pot.resolve('accounts', '/apis/v/grants'),
+      uri: pot.resolve('apis', '/v/grants'),
       method: 'GET',
       auth: {
         bearer: client.admin.token

@@ -24,7 +24,7 @@ describe('POST /grants', function () {
 
   it('with no media type', function (done) {
     request({
-      uri: pot.resolve('accounts', '/apis/v/grants'),
+      uri: pot.resolve('apis', '/v/grants'),
       method: 'POST',
       auth: {
         bearer: client.users[0].token
@@ -45,7 +45,7 @@ describe('POST /grants', function () {
 
   it('with unsupported media type', function (done) {
     request({
-      uri: pot.resolve('accounts', '/apis/v/grants'),
+      uri: pot.resolve('apis', '/v/grants'),
       method: 'POST',
       headers: {
         'Content-Type': 'application/xml'
@@ -69,7 +69,7 @@ describe('POST /grants', function () {
 
   it('without client', function (done) {
     request({
-      uri: pot.resolve('accounts', '/apis/v/grants'),
+      uri: pot.resolve('apis', '/v/grants'),
       method: 'POST',
       json: {},
       auth: {
@@ -90,7 +90,7 @@ describe('POST /grants', function () {
 
   it('with invalid client', function (done) {
     request({
-      uri: pot.resolve('accounts', '/apis/v/grants'),
+      uri: pot.resolve('apis', '/v/grants'),
       method: 'POST',
       json: {
         client: 'serandives'
@@ -113,7 +113,7 @@ describe('POST /grants', function () {
 
   it('without location', function (done) {
     request({
-      uri: pot.resolve('accounts', '/apis/v/grants'),
+      uri: pot.resolve('apis', '/v/grants'),
       method: 'POST',
       json: {
         client: client.serandivesId
@@ -136,7 +136,7 @@ describe('POST /grants', function () {
 
   it('with an invalid location', function (done) {
     request({
-      uri: pot.resolve('accounts', '/apis/v/grants'),
+      uri: pot.resolve('apis', '/v/grants'),
       method: 'POST',
       json: {
         client: client.serandivesId,
@@ -160,7 +160,7 @@ describe('POST /grants', function () {
 
   it('with an invalid client', function (done) {
     request({
-      uri: pot.resolve('accounts', '/apis/v/grants'),
+      uri: pot.resolve('apis', '/v/grants'),
       method: 'POST',
       json: {
         client: '5d18fe076c9c4e1b381514f0',
@@ -184,7 +184,7 @@ describe('POST /grants', function () {
 
   it('with valid client', function (done) {
     request({
-      uri: pot.resolve('accounts', '/apis/v/grants'),
+      uri: pot.resolve('apis', '/v/grants'),
       method: 'POST',
       json: {
         client: client.serandivesId,
@@ -204,14 +204,14 @@ describe('POST /grants', function () {
       b.client.should.equal(client.serandivesId);
       b.user.should.equal(client.users[0].profile.id);
       should.exist(r.headers['location']);
-      r.headers['location'].should.equal(pot.resolve('accounts', '/apis/v/grants/' + b.id));
+      r.headers['location'].should.equal(pot.resolve('apis', '/v/grants/' + b.id));
       done();
     });
   });
 
   it('duplicate', function (done) {
     request({
-      uri: pot.resolve('accounts', '/apis/v/grants'),
+      uri: pot.resolve('apis', '/v/grants'),
       method: 'POST',
       json: {
         client: client.serandivesId,
@@ -231,9 +231,9 @@ describe('POST /grants', function () {
       b.client.should.equal(client.serandivesId);
       b.user.should.equal(client.users[1].profile.id);
       should.exist(r.headers['location']);
-      r.headers['location'].should.equal(pot.resolve('accounts', '/apis/v/grants/' + b.id));
+      r.headers['location'].should.equal(pot.resolve('apis', '/v/grants/' + b.id));
       request({
-        uri: pot.resolve('accounts', '/apis/v/grants'),
+        uri: pot.resolve('apis', '/v/grants'),
         method: 'POST',
         json: {
           client: client.serandivesId,

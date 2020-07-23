@@ -20,7 +20,7 @@ describe('PUT /grants/:id', function () {
           return done(err);
         }
         request({
-          uri: pot.resolve('accounts', '/apis/v/grants'),
+          uri: pot.resolve('apis', '/v/grants'),
           method: 'POST',
           json: {
             client: client.serandivesId,
@@ -40,7 +40,7 @@ describe('PUT /grants/:id', function () {
           b.client.should.equal(client.serandivesId);
           b.user.should.equal(client.users[0].profile.id);
           should.exist(r.headers['location']);
-          r.headers['location'].should.equal(pot.resolve('accounts', '/apis/v/grants/' + b.id));
+          r.headers['location'].should.equal(pot.resolve('apis', '/v/grants/' + b.id));
           grant = b;
           done();
         });
@@ -50,7 +50,7 @@ describe('PUT /grants/:id', function () {
 
   it('with no media type', function (done) {
     request({
-      uri: pot.resolve('autos', '/apis/v/grants/' + grant.id),
+      uri: pot.resolve('apis', '/v/grants/' + grant.id),
       method: 'PUT',
       auth: {
         bearer: client.users[0].token
@@ -71,7 +71,7 @@ describe('PUT /grants/:id', function () {
 
   it('with unsupported media type', function (done) {
     request({
-      uri: pot.resolve('autos', '/apis/v/grants/' + grant.id),
+      uri: pot.resolve('apis', '/v/grants/' + grant.id),
       method: 'PUT',
       headers: {
         'Content-Type': 'application/xml'
@@ -96,7 +96,7 @@ describe('PUT /grants/:id', function () {
   it('with valid fields', function (done) {
     var g0 = _.cloneDeep(grant);
     request({
-      uri: pot.resolve('autos', '/apis/v/grants/' + grant.id),
+      uri: pot.resolve('apis', '/v/grants/' + grant.id),
       method: 'PUT',
       auth: {
         bearer: client.users[0].token
@@ -112,7 +112,7 @@ describe('PUT /grants/:id', function () {
       g1.client.should.equal(client.serandivesId);
       g1.user.should.equal(client.users[0].profile.id);
       should.exist(r.headers['location']);
-      r.headers['location'].should.equal(pot.resolve('accounts', '/apis/v/grants/' + g1.id));
+      r.headers['location'].should.equal(pot.resolve('apis', '/v/grants/' + g1.id));
       done();
     });
   });
@@ -120,7 +120,7 @@ describe('PUT /grants/:id', function () {
   it('by unauthorized user', function (done) {
     var g0 = _.cloneDeep(grant);
     request({
-      uri: pot.resolve('autos', '/apis/v/grants/' + grant.id),
+      uri: pot.resolve('apis', '/v/grants/' + grant.id),
       method: 'PUT',
       auth: {
         bearer: client.users[1].token
@@ -142,7 +142,7 @@ describe('PUT /grants/:id', function () {
   it('invalid id', function (done) {
     var g0 = _.cloneDeep(grant);
     request({
-      uri: pot.resolve('autos', '/apis/v/grants/invalid'),
+      uri: pot.resolve('apis', '/v/grants/invalid'),
       method: 'PUT',
       auth: {
         bearer: client.users[1].token
@@ -164,7 +164,7 @@ describe('PUT /grants/:id', function () {
   it('by an authorized user', function (done) {
     var g0 = _.cloneDeep(grant);
     request({
-      uri: pot.resolve('autos', '/apis/v/grants/' + grant.id),
+      uri: pot.resolve('apis', '/v/grants/' + grant.id),
       method: 'PUT',
       auth: {
         bearer: client.admin.token
@@ -181,7 +181,7 @@ describe('PUT /grants/:id', function () {
       g1.client.should.equal(client.serandivesId);
       g1.user.should.equal(client.users[0].profile.id);
       should.exist(r.headers['location']);
-      r.headers['location'].should.equal(pot.resolve('accounts', '/apis/v/grants/' + g1.id));
+      r.headers['location'].should.equal(pot.resolve('apis', '/v/grants/' + g1.id));
       done();
     });
   });
